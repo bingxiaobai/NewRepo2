@@ -10,14 +10,22 @@ private:
 	vector<double> age;
 public:
 	Name_pairs();
+	friend ostream& operator<<(ostream& out, Name_pairs& np);
 	int read_name(const string& s);
 	int read_age(const double& a);
 	int print();
 	int sort();
+	bool operator ==(const Name_pairs &np)const;
 };
 
 Name_pairs::Name_pairs()
 {
+}
+
+ostream& operator<<(ostream& out, Name_pairs& np)
+{
+	out << np.print();
+	return out;
 }
 
 int Name_pairs::read_name(const string& s)
@@ -63,6 +71,15 @@ int Name_pairs::sort()
 	return 0;
 }
 
+bool Name_pairs::operator==(const Name_pairs &np)const
+{
+	if (this->age == np.age&&this->name == np.name)
+	{
+		return true;
+	}
+	return false;
+}
+
 int main()
 {
 	string name;
@@ -88,7 +105,7 @@ int main()
 		}
 	}
 	list1.sort();
-	list1.print();
+	cout << list1;
 	system ("pause");
 	return 0;
 }
